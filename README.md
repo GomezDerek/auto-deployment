@@ -1,6 +1,6 @@
 Purpose
 -------
-This project aims to develop a bash script that will streamline [Veida AI's](https://veidaai.com/) product deployment.
+This project aims to develop a bash script that will optimize [Veida AI's](https://veidaai.com/) product deployment.
 
 Problem
 -------
