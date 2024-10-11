@@ -1,0 +1,4 @@
+input_file_path=input.txt
+output_file_path=output.txt
+original_string=blue
+replacement_string=----

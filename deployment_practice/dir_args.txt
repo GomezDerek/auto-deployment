@@ -1,0 +1,4 @@
+input_dir=input_dir
+output_dir=output_dir
+original_string=blue
+replacement_string=----
