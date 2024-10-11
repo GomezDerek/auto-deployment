@@ -10,9 +10,9 @@ Its development instance is hosted in one repository. However, its deployment in
 - a back-end repo connected to Railway
 
 When deploying, we must 
-> 1. copy the dev repo's front-end folder into the Vercel prod repo
-> 2. copy the dev repo's back-end folder into the Railway prod repo
-> 3. Replace all of our dev repo's DB API calls with Railway's API calls by copying and pasting the API links into Visual Studio's search and replace feature
+1. copy the dev repo's front-end folder into the Vercel prod repo
+2. copy the dev repo's back-end folder into the Railway prod repo
+3. Replace all of our dev repo's DB API calls with Railway's API calls by copying and pasting the API links into Visual Studio's search and replace feature
 
 Solution
 --------
