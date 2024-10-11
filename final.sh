@@ -12,7 +12,7 @@ count=0
 
 increment_count() {
     local -n ref_count=count  # Create a nameref pointing to the global variable 'count'
-    ((ref_count++))         # Increment the value of the global variable through the nameref
+    ((ref_count++))           # Increment the value of the global variable through the nameref
 }
 
 # extract the values from args.txt and assign them to the args array
