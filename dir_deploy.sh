@@ -72,6 +72,25 @@ function create_output_file_name {
     echo -E "output_file_name: "$output_file_name""
 }
 
+# this function will differentiate between files or directories
+function fileOrDirectory {
+    # Store the argument in a variable
+    path="$1"
+
+    # Check if the argument is a file
+    if [ -f "$path" ]; then
+        echo "$path is a file."
+
+    # Check if the argument is a directory
+    elif [ -d "$path" ]; then
+        echo "$path is a directory."
+
+    # If it's neither a file nor a directory
+    else
+        echo "$path is neither a file nor a directory."
+    fi
+}
+
 # function calls
 extract_args
 assign_args
@@ -97,6 +116,10 @@ replacement_string: "$replacement_string"
 # files can be empty
 
 create_output_file_name input_dir/input.txt
+
+fileOrDirectory input_dir
+fileOrDirectory input_dir/input.txt
+fileOrDirectory fakepath
 
 # echo "
 # ___Directories after replacement___
