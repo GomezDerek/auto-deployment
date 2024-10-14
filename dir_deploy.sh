@@ -69,7 +69,8 @@ function create_output_file_name {
     # echo -E "second_part: $second_part"
     # echo -E "output_dir: $output_dir"
     # declare -p output_dir
-    echo -E "output_file_name: "$output_file_name""
+    # echo -E "output_file_name: "$output_file_name""
+    echo -E "$output_file_name"
 }
 
 # this function will differentiate between files or directories
@@ -98,25 +99,26 @@ function fileOrDirectory {
 
 # recursively navigate through directories and subdirectories
 # $1 directory path
-traverse_directory() {
+main() {
     local dir="$1"
 
     # Check if the argument is a directory
     if [ -d "$dir" ]; then
-        # echo "Entering directory: $dir"
+        echo "Entering directory: $dir"
         
         # Loop through all items in the directory
         for item in "$dir"/*; do
 
             # If the item is a directory, recursively call the function
             if [ -d "$item" ]; then
-                traverse_directory "$item"
+                # traverse_directory "$item"
+                mkdir $(create_output_file_name "$item") # create the output directory clone
+                main "$item"                             # navigate int
 
             # If the item is a file, print its name
             elif [ -f "$item" ]; then
-                # echo "File: $item"
-                touch create_output_file_name "$item"
-
+                # echo -e "\nFile: $item"
+                touch $(create_output_file_name "$item") # create the output file clone
             fi
         done
     else
@@ -138,22 +140,14 @@ replacement_string: "$replacement_string"
 "
 
 echo "
-___Directories before replacement___
-input_dir:"
+___Directories before replacement___"
 tree input_dir
-echo "
-output_dir:"
 tree output_dir
 
-# output directory should mirror the input directory
-# files can be empty
 
-traverse_directory .
+main "$input_dir"
 
 echo "
-___Directories after replacement___
-input_dir:"
+___Directories after replacement___"
 tree input_dir
-echo "
-output_dir:"
 tree output_dir
