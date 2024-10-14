@@ -72,7 +72,7 @@ function create_new_copy {
         LINE=1
         while read -r CURRENT_LINE || [[ -n "$CURRENT_LINE" ]]; do
             # perform the substring replacement
-            modified_line=$(replace_substring $CURRENT_LINE $original_string $replacement_string)
+            modified_line=$(replace_substring "$CURRENT_LINE" "$original_string" "$replacement_string")
 
             # write the modified line to the output file
             echo "$modified_line" >> "$output_file"
