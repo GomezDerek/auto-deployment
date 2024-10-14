@@ -73,21 +73,54 @@ function create_output_file_name {
 }
 
 # this function will differentiate between files or directories
+# $1 filePath
+# returns "file", "dir", or "err"
 function fileOrDirectory {
     # Store the argument in a variable
-    path="$1"
+    local path="$1"
 
     # Check if the argument is a file
     if [ -f "$path" ]; then
-        echo "$path is a file."
+        # echo "$path is a file."
+        echo "file"
 
     # Check if the argument is a directory
     elif [ -d "$path" ]; then
-        echo "$path is a directory."
+        # echo "$path is a directory."
+        echo "dir"
 
     # If it's neither a file nor a directory
     else
-        echo "$path is neither a file nor a directory."
+        # echo "$path is neither a file nor a directory."
+        echo "err"
+    fi
+}
+
+# recursively navigate through directories and subdirectories
+# $1 directory path
+traverse_directory() {
+    local dir="$1"
+
+    # Check if the argument is a directory
+    if [ -d "$dir" ]; then
+        # echo "Entering directory: $dir"
+        
+        # Loop through all items in the directory
+        for item in "$dir"/*; do
+
+            # If the item is a directory, recursively call the function
+            if [ -d "$item" ]; then
+                traverse_directory "$item"
+
+            # If the item is a file, print its name
+            elif [ -f "$item" ]; then
+                # echo "File: $item"
+                touch create_output_file_name "$item"
+
+            fi
+        done
+    else
+        echo "Error: $dir is not a directory."
     fi
 }
 
@@ -104,27 +137,23 @@ original_string: "$original_string"
 replacement_string: "$replacement_string"
 "
 
-# echo "
-# ___Directories before replacement___
-# input_dir:"
-# ls input_dir
-# echo "
-# output_dir:"
-# ls output_dir
+echo "
+___Directories before replacement___
+input_dir:"
+tree input_dir
+echo "
+output_dir:"
+tree output_dir
 
 # output directory should mirror the input directory
 # files can be empty
 
-create_output_file_name input_dir/input.txt
+traverse_directory .
 
-fileOrDirectory input_dir
-fileOrDirectory input_dir/input.txt
-fileOrDirectory fakepath
-
-# echo "
-# ___Directories after replacement___
-# input_dir:"
-# ls input_dir
-# echo "
-# output_dir:"
-# ls output_dir
+echo "
+___Directories after replacement___
+input_dir:"
+tree input_dir
+echo "
+output_dir:"
+tree output_dir
