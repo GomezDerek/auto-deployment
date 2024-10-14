@@ -1,4 +1,4 @@
-input_file_path=input.txt
-output_file_path=output.txt
+input_file_path=input_dir/input3.txt
+output_file_path=output_dir/output3.txt
 original_string=blue
 replacement_string=----
