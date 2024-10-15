@@ -1,0 +1,4 @@
+this blue file is
+in 
+
+the server blue directory
