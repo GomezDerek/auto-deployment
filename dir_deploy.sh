@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "
-Running deployment script..."
+# echo "
+# Running deployment script..."
 
 # the file that hosts the argument variables
 args_file="dir_args.txt"
@@ -156,7 +156,7 @@ main() {
 
     # Check if the argument is a directory
     if [ -d "$dir" ]; then
-        echo "Entering directory: $dir"
+        # echo "Entering directory: $dir"
         
         # Loop through all items in the directory
         for item in "$dir"/*; do
@@ -187,23 +187,23 @@ extract_args
 assign_args
 clean_args
 
-echo "
-_______ARGUMENTS_______
-input_dir: "$input_dir"
-output_dir: "$output_dir"
-original_string: "$original_string"
-replacement_string: "$replacement_string"
-"
+# echo "
+# _______ARGUMENTS_______
+# input_dir: "$input_dir"
+# output_dir: "$output_dir"
+# original_string: "$original_string"
+# replacement_string: "$replacement_string"
+# " 
 
-echo "
-___Directories before replacement___"
-tree input_dir
-tree output_dir
+# echo "
+# ___Directories before replacement___"
+# tree input_dir
+# tree output_dir
 
 
 main "$input_dir"
 
-echo "
-___Directories after replacement___"
-tree input_dir
-tree output_dir
+# echo "
+# ___Directories after replacement___"
+# tree input_dir
+# tree output_dir
