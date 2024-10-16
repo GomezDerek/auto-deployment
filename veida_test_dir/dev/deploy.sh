@@ -4,12 +4,14 @@
 # Running deployment script..."
 
 # the file that hosts the argument variables
-args_file="dir_args.txt"
+args_file="deploy_args.txt"
 
 # variables from the args file
 args=()
 input_dir=""
+frontend_dir=""
 output_dir=""
+backend_dir=""
 original_string=""
 replacement_string=""
 
@@ -42,7 +44,9 @@ function extract_args {
 # assign variables from args[] values
 function assign_args {
     input_dir="${args[0]}"
+    frontend_dir="${args[0]}"
     output_dir="${args[1]}"
+    backend_dir="${args[1]}"
     original_string="${args[2]}"
     replacement_string="${args[3]}"
 }
@@ -53,11 +57,16 @@ function clean_args {
     output_dir="$(remove_invisible_chars "$output_dir")"
     original_string="$(remove_invisible_chars "$original_string")"
     replacement_string="$(remove_invisible_chars "$replacement_string")"
+    frontend_dir="$(remove_invisible_chars "$frontend_dir")"
+    backend_dir="$(remove_invisible_chars "$backend_dir")"
 }
 
 #
 # $1 filename from input_dir
+# $2 output_dir
 function create_output_file_name {
+    local output_dir="$2"
+
     # split the input's filename by the first "/"
     IFS="/" read -r first_part second_part <<< "$1"
     
@@ -150,9 +159,11 @@ function create_new_copy {
 
 # recursively navigate through directories and subdirectories
 # execute substring replacement as we clone from input_dir to output_dir
-# $1 directory path
+# $1 input_dir
+# $2 output_dir
 main() {
     local dir="$1"
+    local output_dir="$2"
 
     # Check if the argument is a directory
     if [ -d "$dir" ]; then
@@ -163,15 +174,15 @@ main() {
 
             # If the item is a directory, recursively call the function
             if [ -d "$item" ]; then
-                mkdir $(create_output_file_name "$item") # create the output_directory clone
-                main "$item"                             # navigate into the directory
+                mkdir $(create_output_file_name "$item" "$output_dir") # create the output_directory clone
+                main "$item" "$output_dir"                             # navigate into the directory
 
             # If the item is a file, print its name
             elif [ -f "$item" ]; then
                 # echo -e "\nFile: $item"
 
                 # create the output_file clone
-                local output_clone=$(create_output_file_name "$item")
+                local output_clone=$(create_output_file_name "$item" "$output_dir")
                 # touch "$output_clone"
                 create_new_copy "$item" "$output_clone"
 
@@ -187,23 +198,43 @@ extract_args
 assign_args
 clean_args
 
-# echo "
-# _______ARGUMENTS_______
-# input_dir: "$input_dir"
-# output_dir: "$output_dir"
-# original_string: "$original_string"
-# replacement_string: "$replacement_string"
-# " 
+test_input="server"
 
-# echo "
-# ___Directories before replacement___"
+echo "
+_______ARGUMENTS_______
+input_dir: "$input_dir"
+output_dir: "$output_dir"
+original_string: "$original_string"
+replacement_string: "$replacement_string"
+frontend_dir: "$frontend_dir"
+backend_dir: "$backend_dir"
+
+\$1: $test_input
+\$2: $backend_dir
+" 
+
+echo "
+------------------------------------
+---Directories before replacement---
+------------------------------------"
 # tree input_dir
 # tree output_dir
+tree $test_input
+echo -e "\n\n"
+tree $backend_dir
+# tree $(remove_invisible_chars $backend_dir)
 
 
-main "$input_dir"
+# main "$input_dir"
+main $test_input $backend_dir
 
-# echo "
-# ___Directories after replacement___"
+echo "
+-----------------------------------
+---Directories after replacement---
+-----------------------------------"
 # tree input_dir
 # tree output_dir
+tree $test_input
+echo -e "\n\n"
+tree $backend_dir
+# tree $(remove_invisible_chars $backend_dir)
