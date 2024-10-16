@@ -4,8 +4,8 @@ This project aims to develop a bash script that will optimize [Veida AI's](https
 
 Problem
 -------
-[Veida AI's](https://veidaai.com/) deployment process is tedious and annoying. Here is Sancho's [tutorial on our deployment process](https://youtu.be/n4QpQ-hRe6Q). 
-Its development instance is hosted in one repository. However, its deployment instance is hosted in two repositories
+[Veida AI's](https://veidaai.com/) deployment process is tedious and annoying. Check out [Sancho's tutorial on our deployment process](https://youtu.be/n4QpQ-hRe6Q). 
+Its development instance is hosted in one repository. However, its production instance is hosted in two repositories
 - a front-end repo connected to Vercel
 - a back-end repo connected to Railway
 
