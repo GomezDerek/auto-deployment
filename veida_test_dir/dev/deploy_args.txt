@@ -1,4 +1,4 @@
-frontend_repo=../prod_frontend
-backend_repo=../prod_backend
+prod_frontend_dir=../prod_frontend
+prod_backend_dir=../prod_backend
 original_string=blue
 replacement_string=----
