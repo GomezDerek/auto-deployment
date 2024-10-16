@@ -169,18 +169,26 @@ main() {
     local input_dir="$1"
     local output_dir="$2"
 
-    # Check if the argument is a directory
+
+    # if input_dir is indeed a directory
     if [ -d "$input_dir" ]; then
-        # echo "Entering directory: $dir"
-        echo "Copying "$input_dir" -> "$output_dir""
+        local output_path=$(create_output_file_name "$input_dir" "$output_dir")
+        # log the filepaths
+        # if input_dir is a subdirectory
+        if [[ "$input_dir" != "$dev_frontend_dir" && "$input_dir" != "$dev_backend_dir" ]]; then
+            echo "Copying "$input_dir" -> "$output_path""
+        # else input_dir is a dev root dir
+        else
+            echo "Copying "$input_dir" -> "$output_dir""
+        fi 
 
         # Loop through all items in the directory
         for item in "$input_dir"/*; do
 
             # If the item is a directory, recursively call the function
             if [ -d "$item" ]; then
-                mkdir $(create_output_file_name "$item" "$output_dir") # create the output_directory clone
-                main "$item" "$output_dir"                             # navigate into the directory
+                mkdir $(create_output_file_name "$item" "$output_dir") # create the subdirectory
+                main "$item" "$output_dir"                             # navigate into the subdirectory
 
             # If the item is a file, print its name
             elif [ -f "$item" ]; then
