@@ -8,9 +8,7 @@ args_file="deploy_args.txt"
 
 # variables from the args file
 args=()
-input_dir=""
 frontend_dir=""
-output_dir=""
 backend_dir=""
 original_string=""
 replacement_string=""
@@ -43,9 +41,7 @@ function extract_args {
 
 # assign variables from args[] values
 function assign_args {
-    input_dir="${args[0]}"
     frontend_dir="${args[0]}"
-    output_dir="${args[1]}"
     backend_dir="${args[1]}"
     original_string="${args[2]}"
     replacement_string="${args[3]}"
@@ -53,8 +49,6 @@ function assign_args {
 
 # remove invisible characters from the args
 function clean_args {
-    input_dir="$(remove_invisible_chars "$input_dir")"
-    output_dir="$(remove_invisible_chars "$output_dir")"
     original_string="$(remove_invisible_chars "$original_string")"
     replacement_string="$(remove_invisible_chars "$replacement_string")"
     frontend_dir="$(remove_invisible_chars "$frontend_dir")"
@@ -183,7 +177,6 @@ main() {
 
                 # create the output_file clone
                 local output_clone=$(create_output_file_name "$item" "$output_dir")
-                # touch "$output_clone"
                 create_new_copy "$item" "$output_clone"
 
             fi
@@ -203,27 +196,20 @@ test_input="server"
 echo "
 _______ARGUMENTS_______
 input_dir: "$input_dir"
-output_dir: "$output_dir"
 original_string: "$original_string"
 replacement_string: "$replacement_string"
 frontend_dir: "$frontend_dir"
-backend_dir: "$backend_dir"
 " 
 
 echo "
 ------------------------------------
 ---Directories before replacement---
 ------------------------------------"
-# tree input_dir
-# tree output_dir
-# tree $test_input
 tree .
 echo -e "\n\n"
 tree "$frontend_dir"
 echo -e "\n\n"
 tree "$backend_dir"
-# tree $backend_dir
-# tree $(remove_invisible_chars $backend_dir)
 
 
 main $test_input $backend_dir
@@ -233,14 +219,8 @@ echo "
 -----------------------------------
 ---Directories after replacement---
 -----------------------------------"
-# tree input_dir
-# tree output_dir
-# tree $test_input
-# echo -e "\n\n"
 tree .
 echo -e "\n\n"
 tree "$frontend_dir"
 echo -e "\n\n"
 tree "$backend_dir"
-# tree $backend_dir
-# tree $(remove_invisible_chars $backend_dir)
