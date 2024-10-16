@@ -1,6 +1,6 @@
 Purpose
 -------
-This project aims to develop a bash script that will optimize [Veida AI's](https://veidaai.com/) product deployment.
+This project ~~aims to develop~~ hosts a bash script that ~~will optimize~~ optimizes [Veida AI's](https://veidaai.com/) product deployment.
 
 Problem
 -------
@@ -12,14 +12,14 @@ Its development instance is hosted in one repository. However, its production in
 When deploying, we must 
 1. copy the dev repo's front-end folder into the Vercel prod repo
 2. copy the dev repo's back-end folder into the Railway prod repo
-3. Replace all of our dev repo's DB API calls with Railway's API calls by copying and pasting the API links into Visual Studio's search and replace feature
+3. **Replace all of our dev repo's DB API calls** with Railway's API calls **by copying and pasting** the API links into Visual Studio's search and replace feature
 
 Solution
 --------
-This custom script will automate deployment.
+This custom script ~~will automate~~ automates deployment.
 
-Directory paths and API paths will be stored in a file so *they only have to be written once.*
+Directory paths and API paths ~~will be~~ are stored in a file so *they only have to be written once.*
 
-After paths are set, simply running `bash deploy.sh` will execute deployment steps 1, 2, & 3.
+After paths are set, simply running `bash deploy.sh` ~~will execute~~ executes deployment steps 1, 2, & 3.
 
 YEEEEHAWWWWWW
