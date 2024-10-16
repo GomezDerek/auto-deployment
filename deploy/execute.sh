@@ -6,7 +6,7 @@ echo -e "\nRunning Veida AI deployment script...\n"
 replacement_count=0
 
 # hard-coded file paths
-args_file="deploy_args.txt" # the file that hosts the argument variables
+args_file="deploy/args.txt" # the file that hosts the argument variables
 dev_frontend_dir="veidaai"  # the dev repo's frontend folder
 dev_backend_dir="server"    # the dev repo's backend folder
 
