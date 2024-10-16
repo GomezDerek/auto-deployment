@@ -208,9 +208,6 @@ original_string: "$original_string"
 replacement_string: "$replacement_string"
 frontend_dir: "$frontend_dir"
 backend_dir: "$backend_dir"
-
-\$1: $test_input
-\$2: $backend_dir
 " 
 
 echo "
@@ -219,14 +216,18 @@ echo "
 ------------------------------------"
 # tree input_dir
 # tree output_dir
-tree $test_input
+# tree $test_input
+tree .
 echo -e "\n\n"
-tree $backend_dir
+tree "$frontend_dir"
+echo -e "\n\n"
+tree "$backend_dir"
+# tree $backend_dir
 # tree $(remove_invisible_chars $backend_dir)
 
 
-# main "$input_dir"
 main $test_input $backend_dir
+main veidaai $frontend_dir
 
 echo "
 -----------------------------------
@@ -234,7 +235,12 @@ echo "
 -----------------------------------"
 # tree input_dir
 # tree output_dir
-tree $test_input
+# tree $test_input
+# echo -e "\n\n"
+tree .
 echo -e "\n\n"
-tree $backend_dir
+tree "$frontend_dir"
+echo -e "\n\n"
+tree "$backend_dir"
+# tree $backend_dir
 # tree $(remove_invisible_chars $backend_dir)
