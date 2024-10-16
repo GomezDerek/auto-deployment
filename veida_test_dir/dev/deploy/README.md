@@ -12,5 +12,7 @@ The dev directory paths have been hard-coded into `execute.sh`
 Deploy!
 ------
 run `bash deploy/execute.sh`
+
 watch the magic happen
+
 enjoy the extra freetime you have now that **deployment has been automated!**
