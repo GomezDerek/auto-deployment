@@ -11,8 +11,8 @@ The dev directory paths have been hard-coded into `execute.sh`
 
 Deploy!
 ------
-run `bash deploy/execute.sh`
+1. run `bash deploy/execute.sh`
 
-watch the magic happen
+2. watch the magic happen
 
-enjoy the extra freetime you have now that **deployment has been automated!**
+3. enjoy the extra freetime you have now that **deployment has been automated!**
