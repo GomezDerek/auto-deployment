@@ -1,6 +1,6 @@
 Purpose
 -------
-This project ~~aims to develop~~ hosts a bash script that ~~will optimize~~ optimizes [Veida AI's](https://veidaai.com/) product deployment.
+This project hosts a bash script that optimizes [Veida AI's](https://veidaai.com/) product deployment.
 
 Problem
 -------
@@ -16,10 +16,10 @@ When deploying, we must
 
 Solution
 --------
-This custom script ~~will automate~~ automates deployment.
+This custom script automates deployment.
 
-Directory paths and API paths ~~will be~~ are stored in a file so *they only have to be written once.*
+Directory paths and API paths are stored in a file so *they only have to be written once.*
 
-After paths are set, simply running `bash deploy.sh` ~~will execute~~ executes deployment steps 1, 2, & 3.
+After paths are set, simply running `bash deploy.sh` executes deployment steps 1, 2, & 3.
 
 YEEEEHAWWWWWW
