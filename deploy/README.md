@@ -11,7 +11,7 @@ The dev directory paths have been hard-coded into `execute.sh`
 
 Deploy!
 ------
-1. run `bash deploy/execute.sh`
+1. run `bash deploy/execute.sh` from the project's root folder
 
 2. watch the magic happen
 
